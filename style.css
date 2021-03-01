@@ -1,0 +1,23 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 20px;
+}
+
+.draw {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.green {
+    background-color: green;
+}
+
+.black {
+    background-color: black;
+}
