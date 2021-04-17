@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     arrayDraw = [];
     let comparisons = 0;
     let swaps = 0;
-    let height = 200;
-    let width = 150;
+    let height = 150;
+    let width = 70;
     let canvas = document.querySelector('.draw');
     let button = document.querySelector('.btn');
 
@@ -35,22 +35,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function bubblesort() {
-        console.log(arrayDraw);
-        for (let i = 0; i < arrayDraw.length; i++) {
-            for (let j = 0; j < arrayDraw.length; j++) {
+        let hasToSort = arrayDraw.length-1;
+        for (let i = 0; i < arrayDraw.length; i++) { //Loops
+            for (let j = 0; j < hasToSort; j++) {  //Compare
                 comparisons++;
-                if (arrayDraw[j] < arrayDraw[i]) {
+                if (arrayDraw[j] > arrayDraw[j+1]) {
                     await sleep(1);
-                    let tmp = arrayDraw[j];
-                    arrayDraw[j] = arrayDraw[i];
-                    arrayDraw[i] = tmp;
+                    let tmp = arrayDraw[j+1];
+                    arrayDraw[j+1] = arrayDraw[j];
+                    arrayDraw[j] = tmp;
                     swaps++;
                     eraseCanvas();
                     draw(arrayDraw);
                 }
             }
+            if (swaps === 0) {
+                console.log(`It took ${comparisons} comparisons`);
+                return;
+            }
+
+            if (swaps > 0) {
+                swaps = 0;
+            }
+
+            hasToSort--;
         }
-        console.log(`It took ${comparisons} comparisons and ${swaps} swaps to change the ${arrayDraw}`);
     }
 
     function eraseCanvas() {
